@@ -12,23 +12,12 @@
 
   <!-- estilos de fonte -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
-  <style>
-    /* Adicione um estilo para ocultar a seção de comentários por padrão */
-    .comments-section {
-      display: none;
-    }
 
-    /* Estilo para a caixa de diálogo do link de compartilhamento */
-    .share-link-dialog {
-      display: none;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      background-color: #f9f9f9;
-    }
-  </style>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 
 <body class="sub_page">
@@ -55,7 +44,7 @@
         <!-- Divisão para o fundo branco -->
         <div class="post_container">
           <!-- Post Section 1 -->
-          <div class="post" style="margin-bottom: 50px;">
+          <div class="post">
             <!-- Conteúdo do post -->
             <div class="user-info">
               <img class="user-icon" src="imagens/usuario.png" alt="Foto de Perfil">
@@ -64,54 +53,43 @@
             <h2>Título do Post 1</h2>
             <!-- Espaço para imagens -->
             <div class="post-images">
-              <img src="imagens/cobra.png" alt="Imagem 1" class="imagem-destaque">
-              <img src="imagens/cobra2.png" alt="Imagem 1" class="imagem-destaque2">
+              <img src="imagens/cobra.png" alt="Imagem 1">
+              <img src="imagens/cobra2.png" alt="Imagem 2">
               <!-- Adicione mais imagens aqui conforme necessário -->
             </div>
-            <p>qualquer coisa
-              full random e fds.</p>
-            <div class="rating">
-              <p>
-                <strong>Nível de Perigo
-              </p>
-              <span class="star">&#9733;</span>
-              <span class="star">&#9733;</span>
-              <span class="star">&#9733;</span>
-              <span class="star">&#9734;</span>
-              <span class="star">&#9734;</span>
-            </strong>
-            </div>
+            <p>qualquer coisa full random e fds.</p>
+            <!-- Botões -->
             <div class="buttons">
-              <button class="like-button" onclick="increaseLikes()">Likes <span id="like-count">0</span></button>
-              <button class="comment-button" onclick="toggleComments()">Comentários</button>
-              <button class="share-button" onclick="showShareLinkDialog()">Compartilhar</button>
+              <button class="btn-like" onclick="increaseLikes()"><i class="fas fa-heart"></i> <span id="like-count">0</span></button>
+              <button class="btn-comment" onclick="toggleComments()"><i class="fas fa-comment"></i></button>
+              <button class="btn-share" onclick="showShareLinkDialog()"><i class="fas fa-share"></i></button>
             </div>
-            <!-- Caixa de diálogo para o link de compartilhamento -->
-            <div class="share-link-dialog" id="share-link-dialog">
-              <p>Compartilhe este link:</p>
-              <input type="text" id="share-link-input" readonly>
+            <!-- Fim dos Botões -->
+            <div class="post-details">
+              <div class="rating">
+                <p>
+                  <strong>Nível de Perigo:</strong>
+                </p>
+                <span class="star" onclick="changeDangerLevel(this)">★</span>
+                <span class="star" onclick="changeDangerLevel(this)">★</span>
+                <span class="star" onclick="changeDangerLevel(this)">★</span>
+                <span class="star" onclick="changeDangerLevel(this)">☆</span>
+                <span class="star" onclick="changeDangerLevel(this)">☆</span>
+              </div>
             </div>
-            <hr>
-            <!-- Espaço para as estrelas -->
           </div>
           <!-- Fim do Post Section 1 -->
 
           <!-- Seção de Comentários -->
-          <div class="comments-section">
+          <div class="comments-section" id="comments-section" style="display: none;">
             <h3>Comentários</h3>
-            <div class="comment">
-              <img class="comment-user-icon" src="imagens/usuario.png" alt="Foto do Usuário 1">
-              <p><strong>Nome do Usuário:</strong> Comentário 1</p>
-            </div>
-            <div class="comment">
-              <img class="comment-user-icon" src="imagens/usuario.png" alt="Foto do Usuário 2">
-              <p><strong>Nome do Usuário:</strong> Comentário 2</p>
-            </div>
             <!-- Formulário para adicionar comentário -->
-            <form class="comment_form">
+            <form class="comment_form" onsubmit="addComment(event)">
               <label for="comment">Adicionar Comentário:</label><br>
               <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
-              <button type="submit">Enviar</button>
+              <div class="send-button">
+                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+              </div>
             </form>
           </div>
           <!-- Fim da Seção de Comentários -->
@@ -126,14 +104,66 @@
   <!-- JavaScript -->
   <script>
     let likeCount = 0;
+    let likeClicked = false;
+    let dangerLevel = 3; // Altere o valor inicial conforme necessário
+    let dangerClicked = false;
 
     function increaseLikes() {
-      likeCount++;
+      const likeButton = document.querySelector('.btn-like');
+      if (!likeClicked) {
+        likeCount++;
+        likeClicked = true;
+        likeButton.classList.add('liked');
+      } else {
+        likeCount--;
+        likeClicked = false;
+        likeButton.classList.remove('liked');
+      }
       document.getElementById("like-count").innerText = likeCount;
     }
 
+    function changeDangerLevel(star) {
+      // Obtém todas as estrelas
+      const stars = document.querySelectorAll('.star');
+      // Encontra a posição da estrela clicada
+      const clickedIndex = Array.from(stars).indexOf(star);
+
+      // Atualiza o nível de perigo e as estrelas
+      for (let i = 0; i < stars.length; i++) {
+        if (i <= clickedIndex) {
+          // Marca estrelas à esquerda e na posição clicada
+          stars[i].innerText = '★';
+        } else {
+          // Desmarca estrelas à direita
+          stars[i].innerText = '☆';
+        }
+      }
+
+      // Atualiza o nível de perigo
+      dangerLevel = clickedIndex + 1;
+    }
+
+    function addComment(event) {
+      event.preventDefault();
+      const commentTextarea = document.getElementById('comment');
+      const commentText = commentTextarea.value;
+      if (commentText.trim() !== '') {
+        const commentsContainer = document.querySelector('.comments-section');
+        const newCommentDiv = document.createElement('div');
+        newCommentDiv.classList.add('comment');
+        newCommentDiv.innerHTML = `
+          <img class="comment-user-icon" src="imagens/usuario.png" alt="Foto do Usuário">
+          <p><strong>Nome do Usuário:</strong> ${commentText}</p>
+        `;
+        commentsContainer.appendChild(newCommentDiv);
+        commentTextarea.value = '';
+      } else {
+        alert('Por favor, insira um comentário.');
+      }
+    }
+
     function toggleComments() {
-      const commentsSection = document.querySelector('.comments-section');
+      const commentsSection = document.getElementById('comments-section');
       if (commentsSection.style.display === 'none') {
         commentsSection.style.display = 'block';
       } else {
@@ -142,11 +172,8 @@
     }
 
     function showShareLinkDialog() {
-      const shareLinkDialog = document.getElementById('share-link-dialog');
-      const currentURL = window.location.href;
-      const shareLinkInput = document.getElementById('share-link-input');
-      shareLinkInput.value = currentURL;
-      shareLinkDialog.style.display = 'block';
+      const postURL = window.location.href;
+      alert(`Link do Post: ${postURL}`);
     }
   </script>
 </body>

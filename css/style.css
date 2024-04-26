@@ -777,7 +777,7 @@ a:focus {
 
 /* forum */
 
-
+/* Estilos para a foto de perfil do usuário */
 .user-icon {
   width: 85px;
   height: 50px;
@@ -785,6 +785,7 @@ a:focus {
   margin-bottom: 10px;
 }
 
+/* Estilos para o contêiner do post */
 .post_container {
   border: 1px solid #000000;
   background-color: #D3D3D3;
@@ -793,6 +794,7 @@ a:focus {
   border-radius: 10px;
 }
 
+/* Estilos para a foto de perfil do comentário */
 .comment-user-icon {
   width: 85px;
   height: 50px;
@@ -800,26 +802,11 @@ a:focus {
   margin-bottom: 10px;
 }
 
-.imagem-destaque {
-  width: 300px; /* Defina a largura desejada */
-  height: auto; /* A altura será ajustada automaticamente para manter a proporção */
-  border: 2px solid #000; /* Adiciona uma borda sólida de 2 pixels */
-  border-radius: 20px; /* Adiciona uma borda curvada com um raio de 10 pixels */
+/* Estilos para as imagens em destaque */
+.post-images img {
+  max-width: 100%;
+  max-height: 200px; /* Defina a altura máxima desejada */
+  height: auto;
+  margin-bottom: 10px;
 }
 
-.imagem-destaque2 {
-  width: 300px; /* Defina a largura desejada */
-  height: auto; /* A altura será ajustada automaticamente para manter a proporção */
-  border: 2px solid #000; /* Adiciona uma borda sólida de 2 pixels */
-  border-radius: 20px; /* Adiciona uma borda curvada com um raio de 10 pixels */
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-
-
-/*# sourceMappingURL=style.css.map */
