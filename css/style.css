@@ -814,6 +814,11 @@ a:focus {
   border-radius: 20px; /* Adiciona uma borda curvada com um raio de 10 pixels */
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 
 
 

@@ -14,6 +14,21 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
+  <style>
+    /* Adicione um estilo para ocultar a seção de comentários por padrão */
+    .comments-section {
+      display: none;
+    }
+
+    /* Estilo para a caixa de diálogo do link de compartilhamento */
+    .share-link-dialog {
+      display: none;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+  </style>
 </head>
 
 <body class="sub_page">
@@ -40,72 +55,57 @@
         <!-- Divisão para o fundo branco -->
         <div class="post_container">
           <!-- Post Section 1 -->
-<div class="post" style="margin-bottom: 50px;">
-  <!-- Conteúdo do post -->
-  <div class="user-info">
-    <img class="user-icon" src="imagens/usuario.png" alt="Foto de Perfil">
-    <span class="username">Nome do Usuário</span>
-  </div>
-  <h2>Título do Post 1</h2>
-  <!-- Espaço para imagens -->
-  <div class="post-images">
-    <img src="imagens/cobra.png" alt="Imagem 1" class="imagem-destaque">
-    <img src="imagens/cobra2.png" alt="Imagem 1" class="imagem-destaque2">
-    <!-- Adicione mais imagens aqui conforme necessário -->
-  </div>
-  <p>Conteúdo do Post 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo nec tortor vel fringilla. Integer vitae tristique turpis. Vivamus nec est ut felis rhoncus varius vitae ac lorem. Donec sollicitudin urna at orci venenatis, sit amet
-    luctus metus aliquet. Sed a metus ac nisl vestibulum iaculis. Mauris mattis ligula et lacus interdum, ac luctus purus sodales. Sed nec lorem id dolor tempor feugiat. Mauris quis dolor id felis posuere varius id et velit. Vestibulum sit amet
-    convallis quam.</p>
-    <div class="rating">
-      <p>
-        <strong>Nível de Perigo
-      </p>
-      <span class="star">&#9733;</span>
-      <span class="star">&#9733;</span>
-      <span class="star">&#9733;</span>
-      <span class="star">&#9734;</span>
-      <span class="star">&#9734;</span>
-    </strong>
-    </div>
-    <hr>
-  <h3>Comentários</h3>
-  <!-- Comentários -->
-  <div class="comment">
-    <img class="comment-user-icon" src="imagens/usuario.png" alt="Foto do Usuário 1">
-    <p><strong>Nome do Usuário:</strong> Comentário 1</p>
-  </div>
-  <div class="comment">
-    <img class="comment-user-icon" src="imagens/usuario.png" alt="Foto do Usuário 2">
-    <p><strong>Nome do Usuário:</strong> Comentário 2</p>
-  </div>
-  <!-- Formulário para adicionar comentário -->
-  <form class="comment_form">
-    <label for="comment">Adicionar Comentário:</label><br>
-    <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
-    <button type="submit">Enviar</button>
-  </form>
-  <!-- Espaço para as estrelas -->
-</div>
-<!-- Fim do Post Section 1 -->
-
-
-
-          <!-- Post Section 2 -->
-          <div class="post" style ="margin-bottom: 50px;">
-            <!-- Foto de perfil do usuário -->
-            <img class="user-icon" src="imagens/usuario.png" alt="Foto de Perfil">
-            <h2>Título do Post 2</h2>
-            <p>Conteúdo do Post 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo nec tortor vel fringilla. Integer vitae tristique turpis. Vivamus nec est ut felis rhoncus varius vitae ac lorem. Donec sollicitudin urna at orci venenatis, sit amet
-              luctus metus aliquet. Sed a metus ac nisl vestibulum iaculis. Mauris mattis ligula et lacus interdum, ac luctus purus sodales. Sed nec lorem id dolor tempor feugiat. Mauris quis dolor id felis posuere varius id et velit. Vestibulum sit amet
-              convallis quam.</p>
+          <div class="post" style="margin-bottom: 50px;">
+            <!-- Conteúdo do post -->
+            <div class="user-info">
+              <img class="user-icon" src="imagens/usuario.png" alt="Foto de Perfil">
+              <span class="username">Nome do Usuário</span>
+            </div>
+            <h2>Título do Post 1</h2>
+            <!-- Espaço para imagens -->
+            <div class="post-images">
+              <img src="imagens/cobra.png" alt="Imagem 1" class="imagem-destaque">
+              <img src="imagens/cobra2.png" alt="Imagem 1" class="imagem-destaque2">
+              <!-- Adicione mais imagens aqui conforme necessário -->
+            </div>
+            <p>qualquer coisa
+              full random e fds.</p>
+            <div class="rating">
+              <p>
+                <strong>Nível de Perigo
+              </p>
+              <span class="star">&#9733;</span>
+              <span class="star">&#9733;</span>
+              <span class="star">&#9733;</span>
+              <span class="star">&#9734;</span>
+              <span class="star">&#9734;</span>
+            </strong>
+            </div>
+            <div class="buttons">
+              <button class="like-button" onclick="increaseLikes()">Likes <span id="like-count">0</span></button>
+              <button class="comment-button" onclick="toggleComments()">Comentários</button>
+              <button class="share-button" onclick="showShareLinkDialog()">Compartilhar</button>
+            </div>
+            <!-- Caixa de diálogo para o link de compartilhamento -->
+            <div class="share-link-dialog" id="share-link-dialog">
+              <p>Compartilhe este link:</p>
+              <input type="text" id="share-link-input" readonly>
+            </div>
             <hr>
+            <!-- Espaço para as estrelas -->
+          </div>
+          <!-- Fim do Post Section 1 -->
+
+          <!-- Seção de Comentários -->
+          <div class="comments-section">
             <h3>Comentários</h3>
-            <!-- Comentários -->
             <div class="comment">
-              <p>Usuário 1: Comentário 1</p>
+              <img class="comment-user-icon" src="imagens/usuario.png" alt="Foto do Usuário 1">
+              <p><strong>Nome do Usuário:</strong> Comentário 1</p>
             </div>
             <div class="comment">
-              <p>Usuário 2: Comentário 2</p>
+              <img class="comment-user-icon" src="imagens/usuario.png" alt="Foto do Usuário 2">
+              <p><strong>Nome do Usuário:</strong> Comentário 2</p>
             </div>
             <!-- Formulário para adicionar comentário -->
             <form class="comment_form">
@@ -114,37 +114,41 @@
               <button type="submit">Enviar</button>
             </form>
           </div>
-          <!-- Fim do Post Section 2 -->
+          <!-- Fim da Seção de Comentários -->
 
-          <!-- Post Section 3 -->
-          <div class="post" style ="margin-bottom: 50px;">
-            <!-- Foto de perfil do usuário -->
-            <img class="user-icon" src="imagens/usuario.png" alt="Foto de Perfil">
-            <h2>Título do Post 3</h2>
-            <p>Conteúdo do Post 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo nec tortor vel fringilla. Integer vitae tristique turpis. Vivamus nec est ut felis rhoncus varius vitae ac lorem. Donec sollicitudin urna at orci venenatis, sit amet
-              luctus metus aliquet. Sed a metus ac nisl vestibulum iaculis. Mauris mattis ligula et lacus interdum, ac luctus purus sodales. Sed nec lorem id dolor tempor feugiat. Mauris quis dolor id felis posuere varius id et velit. Vestibulum sit amet
-              convallis quam.</p>
-            <hr>
-            <h3>Comentários</h3>
-            <!-- Comentários -->
-            <div class="comment">
-              <p>Usuário 1: Comentário 1</p>
-            </div>
-            <div class="comment">
-              <p>Usuário 2: Comentário 2</p>
-            </div>
-            <!-- Formulário para adicionar comentário -->
-            <form class="comment_form">
-              <label for="comment">Adicionar Comentário:</label><br>
-              <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
-              <button type="submit">Enviar</button>
-            </form>
-          </div>
-          <!-- Fim do Post Section 3 -->
         </div>
         <!-- Fim do container de posts -->
       </div>
     </div>
     <!-- Fim do Main Content Area -->
   </div>
+
+  <!-- JavaScript -->
+  <script>
+    let likeCount = 0;
+
+    function increaseLikes() {
+      likeCount++;
+      document.getElementById("like-count").innerText = likeCount;
+    }
+
+    function toggleComments() {
+      const commentsSection = document.querySelector('.comments-section');
+      if (commentsSection.style.display === 'none') {
+        commentsSection.style.display = 'block';
+      } else {
+        commentsSection.style.display = 'none';
+      }
+    }
+
+    function showShareLinkDialog() {
+      const shareLinkDialog = document.getElementById('share-link-dialog');
+      const currentURL = window.location.href;
+      const shareLinkInput = document.getElementById('share-link-input');
+      shareLinkInput.value = currentURL;
+      shareLinkDialog.style.display = 'block';
+    }
+  </script>
 </body>
+
+</html>
